@@ -1,0 +1,11 @@
+@media (min-width: 360px){
+    #toWrap{
+        flex-wrap: wrap;
+    }
+}
+
+@media (min-width: 700px){
+    #toWrap{
+        flex-wrap: nowrap;
+    }
+}
