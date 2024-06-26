@@ -1,11 +1,21 @@
 import React from "react";
-import LabCheck from "../LabCheck";
-import Labcheck1 from "../Labcheck1";
-import Table from "../Table";
+import LineChart from "../LineChart";
+import BarChart from "../BarChart";
+import PieChart from "../PieChart";
 const LabTest = () => {
   return (
-    <div>
-      Lab Test
+    <div className="w-full">
+      <div className="top-sec flex gap-5 w-full">
+        <div className="left-sec w-[50%]">
+          <BarChart/>
+        </div>
+        <div className="right-sec w-[50%]">
+          <PieChart/>
+        </div>
+      </div>
+      <div className="w-full mt-5 bottom-sec">
+        <LineChart/>
+      </div>
     </div>
   );
 };

@@ -33,7 +33,7 @@ const Asidebar = ({ click, showSidebar }) => {
 
             <div className="w-full flex items-center h-[4.5rem]">
               <NavLink
-                to="/"
+                to="dashboard"
                 className={({ isActive }) =>
                   `
                         ${

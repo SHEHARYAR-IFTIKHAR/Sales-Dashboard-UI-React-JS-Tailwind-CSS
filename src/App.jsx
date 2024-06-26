@@ -1,17 +1,44 @@
 import React from "react";
-import "./App.css";
-import { useEffect, useState } from 'react'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import SignUp from "./components/Home/SignUp";
 import Layout from "./components/Layout";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 
-function App() {
-  const [theme,setTheme] = useState(false)
+const isUser = localStorage.getItem("user_login");
+console.log(isUser);
+
+const App = () => {
   return (
-    <div className={`${theme?'dark':''}`}>
-      <div className="text-[20px] text-black">Hello world</div>
-      <Layout />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          {/* <Route
+            path="/"
+            element={
+              isUser !== isUser ? (
+                <LogIn/>
+              ) : (
+                <Navigate to="/layout" />
+              )
+            }
+          />
+          <Route element={<Layout />}>
+            <Route
+              path="/dashboard"
+              element={<Dashboard />}
+            />
+          </Route> */}
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

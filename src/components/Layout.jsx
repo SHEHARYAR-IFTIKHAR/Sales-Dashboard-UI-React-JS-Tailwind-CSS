@@ -1,13 +1,27 @@
 import React, {useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import {  Navigate, Outlet } from "react-router-dom";
 import Asidebar from "./Asidebar";
 import Header from "./Header";
-import { ThemeProvider } from './contexts/Theme'
+import { ThemeProvider } from './contexts/Theme';
+import LogIn from './LogIn';
 
 const Layout = () => {
 
+ 
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // const handleSignUp = () => {
+  //   setIsLoggedIn(true);
+  // };
+
+  // const handleLogOut = () => {
+  //   setIsLoggedIn(false);
+  // };
+
+
+  // Sidebar
   const [showSidebar, setShowSidebar] = useState(false);
-  const [theme,0] = useState(false)
+  const [theme, setTheme] = useState(false)
 
   const toggleSidebar = () => {
     
@@ -35,6 +49,31 @@ const Layout = () => {
     document.querySelector("html").classList.add(themeMode);
   }, [themeMode]);
 
+
+  // Log In 
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // Check login state and user data on component mount
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    console.log(loggedIn);
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    setIsLoggedIn(loggedIn, storedUserData);
+    setUserData(storedUserData);
+  }, []);
+
+  
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserData(null);
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userData');
+  };
+
+
   
   return (
  
@@ -48,13 +87,19 @@ const Layout = () => {
       <div className=" lg:w-10/12 xsm:w-full h-full">
         <div className="flex justify-center w-full h-[18vh]">
           <div className="w-[95%] h-full">
-            <Header showSidebar={showSidebar} click={toggleSidebar} />
+            <Header showSidebar={showSidebar} click={toggleSidebar}  isLoggedIn={isLoggedIn} userData={userData} Logout={handleLogout}/>
+
           </div>
+          {/* <div className="hidden">
+          <LogIn onLogin={handleLogin} />
+          </div> */}
         </div>
 
         <div className="flex justify-center w-full h-[82vh]">
           <div className="w-[95%] h-full ">
+          {/* {!isLoggedIn && <LogIn onSignUp={handleSignUp} />} */}
             <Outlet />
+            
           </div>
         </div>
       </div>
