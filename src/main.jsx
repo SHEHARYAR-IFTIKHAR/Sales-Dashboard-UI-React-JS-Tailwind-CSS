@@ -16,19 +16,18 @@ import Help from "./components/Help/Help.jsx";
 import SignUp from "./components/Home/SignUp.jsx";
 import LogIn from "./components/LogIn.jsx";
 
-const isUser = localStorage.getItem('user_login')
+const isUser = localStorage.getItem("user_login");
 
-console.log("is user",isUser)
+console.log("is user", isUser);
 
 const router = createBrowserRouter([
   {
-    path: "login",
-    element: <LogIn/>,
+    path: "/",
+    element: <Layout />,
   },
   {
     path: "signup",
     element: <SignUp />,
-    
   },
 
   {
@@ -68,11 +67,11 @@ const router = createBrowserRouter([
         element: <Help />,
       },
     ],
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
