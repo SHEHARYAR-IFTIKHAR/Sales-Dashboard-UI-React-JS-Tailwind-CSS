@@ -10,7 +10,6 @@ import { FaSave } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
 const TableComponent = ({ sdata, filteredData }) => {
-
   const [data, setData] = useState(() => {
     const savedData = loadDataFromLocalStorage("tableData");
     return (
@@ -152,7 +151,7 @@ const TableComponent = ({ sdata, filteredData }) => {
   };
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-[85rem] flex justify-center">
       <table className="w-full flex justify-center items-center flex-col shadow-md">
         <thead className="w-full">
           <tr className="w-full flex shadow dark:bg-gray-700 dark:border-gray-400 border-b">
@@ -213,152 +212,145 @@ const TableComponent = ({ sdata, filteredData }) => {
           </tr>
         </thead>
         <tbody className="w-full">
-          {filteredData.length > 0 ? (
-            filteredData.map((row, index) => (
-              <tr
-                key={index}
-                className="w-full flex shadow dark:bg-gray-700 dark:border-gray-400 border-b"
-                // className={`w-full flex shadow dark:bg-gray-700 dark:border-gray-400 border-b hover:bg-gray-50 ${index === 0 ? 'text-blue-500' : ''}`}
-              >
-                {/* border w-10 h-16 flex items-center justify-start */}
-                <td className="flex justify-center items-center px-4 py-4 ">
-                  <div className="flex justify-center items-center rounded-md ml-4  mr-7 h-6 w-6 ">
-                    <input
-                      className="h-8 w-8 rounded-md  outline-none "
-                      type="checkbox"
-                      name=""
-                      id=""
-                    />
-                  </div>
-                </td>
-                {Object.keys(row).map((key, colIndex) => (
-                  <td
-                    key={colIndex}
-                    // className="w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-4 py-6"
-
-                    className={`w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-6 py-4  ${
-                      colIndex === 0 ? "text-blue-600" : ""
-                    }`}
-                  >
-                    {editIdx === index ? (
+          {filteredData.length > 0
+            ? filteredData.map((row, index) => (
+                <tr
+                  key={index}
+                  className="w-full flex shadow dark:bg-gray-700 dark:border-gray-400 border-b"
+                  // className={`w-full flex shadow dark:bg-gray-700 dark:border-gray-400 border-b hover:bg-gray-50 ${index === 0 ? 'text-blue-500' : ''}`}
+                >
+                  {/* border w-10 h-16 flex items-center justify-start */}
+                  <td className="flex justify-center items-center px-4 py-4 ">
+                    <div className="flex justify-center items-center rounded-md ml-4  mr-7 h-6 w-6 ">
                       <input
-                        type="text"
-                        value={row[key]}
-                        onChange={(e) => handleChange(e, index, key)}
-                        // className="border rounded-md px-2 dark:bg-gray-600 w-32 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-
-                        className={`border rounded-md px-2 py-1 dark:bg-gray-600 w-32 focus:outline-none focus:ring-2 ${
-                          colIndex === 0
-                            ? "text-blue-600"
-                            : "focus:ring-blue-500"
-                        }`}
+                        className="h-8 w-8 rounded-md  outline-none "
+                        type="checkbox"
+                        name=""
+                        id=""
                       />
-                    ) : (
-                      row[key]
-                    )}
+                    </div>
                   </td>
-                ))}
-                <td className="w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-4 py-6">
-                  {editIdx === index ? (
-                    <button
-                      onClick={handleSave}
-                      className="bg-green-500 shadow-md text-white px-4 py-2 rounded-md hover:bg-white hover:text-green-500"
-                    >
-                      <FaSave />
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => handleEdit(index)}
-                      className="bg-green-500 shadow-md text-white px-4 py-2 rounded-md hover:bg-white hover:text-green-500"
-                    >
-                      <FaEdit />
-                    </button>
-                  )}
-                  <button
-                    onClick={() => handleDelete(index)}
-                    className="bg-red-400 shadow-md text-red-700 px-4 py-2 ml-2 rounded-md hover:text-red-200 hover:bg-red-600"
-                  >
-                    <MdDelete />
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            data.map((row, index) => (
-              <tr
-                key={index}
-                className="w-full flex shadow dark:bg-gray-700 dark:border-gray-400 border-b"
-                // className={`w-full flex shadow dark:bg-gray-700 dark:border-gray-400 border-b hover:bg-gray-50 ${index === 0 ? 'text-blue-500' : ''}`}
-              >
-                {/* border w-10 h-16 flex items-center justify-start */}
-                <td className="flex justify-center items-center px-4 py-4 ">
-                  <div className="flex justify-center items-center rounded-md ml-4  mr-7 h-6 w-6 ">
-                    <input
-                      className="h-8 w-8 rounded-md  outline-none "
-                      type="checkbox"
-                      name=""
-                      id=""
-                    />
-                  </div>
-                </td>
-                {Object.keys(row).map((key, colIndex) => (
-                  <td
-                    key={colIndex}
-                    // className="w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-4 py-6"
+                  {Object.keys(row).map((key, colIndex) => (
+                    <td
+                      key={colIndex}
+                      // className="w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-4 py-6"
 
-                    className={`w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-6 py-4  ${
-                      colIndex === 0 ? "text-blue-600" : ""
-                    }`}
-                  >
+                      className={`w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-6 py-4  ${
+                        colIndex === 0 ? "text-blue-600" : ""
+                      }`}
+                    >
+                      {editIdx === index ? (
+                        <input
+                          type="text"
+                          value={row[key]}
+                          onChange={(e) => handleChange(e, index, key)}
+                          // className="border rounded-md px-2 dark:bg-gray-600 w-32 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+                          className={`border rounded-md px-2 py-1 dark:bg-gray-600 w-32 focus:outline-none focus:ring-2 ${
+                            colIndex === 0
+                              ? "text-blue-600"
+                              : "focus:ring-blue-500"
+                          }`}
+                        />
+                      ) : (
+                        row[key]
+                      )}
+                    </td>
+                  ))}
+                  <td className="w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-4 py-6">
                     {editIdx === index ? (
-                      <input
-                        type="text"
-                        value={row[key]}
-                        onChange={(e) => handleChange(e, index, key)}
-                        // className="border rounded-md px-2 dark:bg-gray-600 w-32 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-
-                        className={`border rounded-md px-2 py-1 dark:bg-gray-600 w-32 focus:outline-none focus:ring-2 ${
-                          colIndex === 0
-                            ? "text-blue-600"
-                            : "focus:ring-blue-500"
-                        }`}
-                      />
+                      <button
+                        onClick={handleSave}
+                        className="bg-green-500 shadow-md text-white px-4 py-2 rounded-md hover:bg-white hover:text-green-500"
+                      >
+                        <FaSave />
+                      </button>
                     ) : (
-                      row[key]
+                      <button
+                        onClick={() => handleEdit(index)}
+                        className="bg-green-500 shadow-md text-white px-4 py-2 rounded-md hover:bg-white hover:text-green-500"
+                      >
+                        <FaEdit />
+                      </button>
                     )}
+                    <button
+                      onClick={() => handleDelete(index)}
+                      className="bg-red-400 shadow-md text-red-700 px-4 py-2 ml-2 rounded-md hover:text-red-200 hover:bg-red-600"
+                    >
+                      <MdDelete />
+                    </button>
                   </td>
-                ))}
-                <td className="w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-4 py-6">
-                  {editIdx === index ? (
-                    <button
-                      onClick={handleSave}
-                      className="bg-green-500 shadow-md text-white px-4 py-2 rounded-md hover:bg-white hover:text-green-500"
+                </tr>
+              ))
+            : data.map((row, index) => (
+                <tr
+                  key={index}
+                  className="w-full flex shadow dark:bg-gray-700 dark:border-gray-400 border-b"
+                  // className={`w-full flex shadow dark:bg-gray-700 dark:border-gray-400 border-b hover:bg-gray-50 ${index === 0 ? 'text-blue-500' : ''}`}
+                >
+                  {/* border w-10 h-16 flex items-center justify-start */}
+                  <td className="flex justify-center items-center px-4 py-4 ">
+                    <div className="flex justify-center items-center rounded-md ml-4  mr-7 h-6 w-6 ">
+                      <input
+                        className="h-8 w-8 rounded-md  outline-none "
+                        type="checkbox"
+                        name=""
+                        id=""
+                      />
+                    </div>
+                  </td>
+                  {Object.keys(row).map((key, colIndex) => (
+                    <td
+                      key={colIndex}
+                      // className="w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-4 py-6"
+
+                      className={`w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-6 py-4  ${
+                        colIndex === 0 ? "text-blue-600" : ""
+                      }`}
                     >
-                      <FaSave />
-                    </button>
-                  ) : (
+                      {editIdx === index ? (
+                        <input
+                          type="text"
+                          value={row[key]}
+                          onChange={(e) => handleChange(e, index, key)}
+                          // className="border rounded-md px-2 dark:bg-gray-600 w-32 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+                          className={`border rounded-md px-2 py-1 dark:bg-gray-600 w-32 focus:outline-none focus:ring-2 ${
+                            colIndex === 0
+                              ? "text-blue-600"
+                              : "focus:ring-blue-500"
+                          }`}
+                        />
+                      ) : (
+                        row[key]
+                      )}
+                    </td>
+                  ))}
+                  <td className="w-full flex dark:text-gray-200 items-center text-lg text-left whitespace-nowrap px-4 py-6">
+                    {editIdx === index ? (
+                      <button
+                        onClick={handleSave}
+                        className="bg-green-500 shadow-md text-white px-4 py-2 rounded-md hover:bg-white hover:text-green-500"
+                      >
+                        <FaSave />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleEdit(index)}
+                        className="bg-green-500 shadow-md text-white px-4 py-2 rounded-md hover:bg-white hover:text-green-500"
+                      >
+                        <FaEdit />
+                      </button>
+                    )}
                     <button
-                      onClick={() => handleEdit(index)}
-                      className="bg-green-500 shadow-md text-white px-4 py-2 rounded-md hover:bg-white hover:text-green-500"
+                      onClick={() => handleDelete(index)}
+                      className="bg-red-400 shadow-md text-red-700 px-4 py-2 ml-2 rounded-md hover:text-red-200 hover:bg-red-600"
                     >
-                      <FaEdit />
+                      <MdDelete />
                     </button>
-                  )}
-                  <button
-                    onClick={() => handleDelete(index)}
-                    className="bg-red-400 shadow-md text-red-700 px-4 py-2 ml-2 rounded-md hover:text-red-200 hover:bg-red-600"
-                  >
-                    <MdDelete />
-                  </button>
-                </td>
-              </tr>
-            ))
-          )}
-
-
-
-
-
+                  </td>
+                </tr>
+              ))}
 
           {/* {filteredData.length > 0 ? (
         // Display filtered data if available

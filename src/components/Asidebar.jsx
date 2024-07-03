@@ -24,16 +24,16 @@ const Asidebar = ({ click, showSidebar }) => {
           </h1>
           <button
             onClick={click}
-            className=" justify-center items-center  rounded-md dark:bg-gray-600 bg-white h-10 w-10 hover:bg-blue-100 xsm:ml-3.5  xsm:block lg:hidden shadow-md"
+            className=" justify-center items-center  rounded-md dark:bg-gray-600 bg-white h-10 w-10 xsm:ml-3.5  xsm:block lg:hidden shadow"
           >
-            <LuArrowLeftToLine className="size-10 dark:text-gray-300 hover:text-blue-600" />
+            <LuArrowLeftToLine className="size-10 dark:text-gray-300 text-gray-400" />
           </button>
         </div>
 
         <div className="w-full flex lg:block flex-col items-left h-full">
           <div className="w-full flex items-center h-[4.5rem]">
             <NavLink
-              to="dashboard"
+              to="/"
               className={({ isActive }) =>
                 `
                         ${

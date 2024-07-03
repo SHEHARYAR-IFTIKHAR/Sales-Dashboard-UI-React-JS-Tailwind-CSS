@@ -121,11 +121,6 @@ const Dashboard = (props) => {
     },
   ]);
 
-
-
-
-
-
   // Customer Filter
 
   useEffect(() => {
@@ -133,71 +128,74 @@ const Dashboard = (props) => {
   }, []);
 
   useEffect(() => {
-    filterCustomer()
+    filterCustomer();
   }, [customer]);
 
-  const filterCustomer = ()=>{
-    let res = data?.filter((item) => item?.customer?.toLowerCase().includes(customer?.toLowerCase()))
-   setFilterData(res)
-  }
-
+  const filterCustomer = () => {
+    let res = data?.filter((item) =>
+      item?.customer?.toLowerCase().includes(customer?.toLowerCase())
+    );
+    setFilterData(res);
+  };
 
   // Invoice id Filter
-  
+
   useEffect(() => {
-    filterInvoiceId()
+    filterInvoiceId();
   }, [invoiceId]);
 
-  const filterInvoiceId = ()=>{
-    let res = data?.filter((item) => item?.invoiceId?.toLowerCase().includes(invoiceId?.toLowerCase()))
-   setFilterData(res)
-  }
-
-
+  const filterInvoiceId = () => {
+    let res = data?.filter((item) =>
+      item?.invoiceId?.toLowerCase().includes(invoiceId?.toLowerCase())
+    );
+    setFilterData(res);
+  };
 
   // Date Filter
-  
+
   useEffect(() => {
-    filterDate()
+    filterDate();
   }, [date]);
 
-  const filterDate = ()=>{
-    let res = data?.filter((item) => item?.date?.toLowerCase().includes(date?.toLowerCase()))
-   setFilterData(res)
-  }
-
-
+  const filterDate = () => {
+    let res = data?.filter((item) =>
+      item?.date?.toLowerCase().includes(date?.toLowerCase())
+    );
+    setFilterData(res);
+  };
 
   // End Date Filter
-  
+
   useEffect(() => {
-    filterEndDate()
+    filterEndDate();
   }, [date]);
 
-  const filterEndDate = ()=>{
-    let res = data?.filter((item) => item?.date?.toLowerCase().includes(date?.toLowerCase()))
-   setFilterData(res)
-  }
-
-
-
-
+  const filterEndDate = () => {
+    let res = data?.filter((item) =>
+      item?.date?.toLowerCase().includes(date?.toLowerCase())
+    );
+    setFilterData(res);
+  };
 
   return (
-    <div className="w-full h-full flex  flex-col gap-5 items-center">
+    <div className="w-full h-full flex xsm:mt-[-3rem] md:mt-8 flex-col xsm:gap-2 md:gap-5 items-center">
       <div className="w-full md:h-[30%] xsm:h-auto mt-0">
         <div className="w-full  md:h-[40%]">
-          <strong className="text-3xl dark:text-gray-300">Sales Information</strong>
+          <strong className="xsm:text-xl md:text-3xl dark:text-gray-300">
+            Sales Information
+          </strong>
         </div>
         <div className="w-full h-[60%] xsm:h-auto justify-between xsm:flex-wrap md:flex-nowrap flex gap-4">
-          <div className="w-[50%] xsm:w-full h-full xsm:flex-wrap sm:flex-nowrap flex justify-between gap-4">
+          <div className="w-[50%] xsm:text-lg xsm:w-full h-full xsm:flex-wrap sm:flex-nowrap flex justify-between gap-4">
             <SearchSales
+              className="xsm:text-lg md:text-xl"
               plceh="Enter Customer Name"
               brand="Customer"
               filterValue={customer}
               setFilterValue={setCustomer}
             />
             <SearchSales
+              className="xsm:text-lg md:text-xl"
               plceh="Enter Invoice ID"
               brand="Invoice ID"
               filterValue={invoiceId}
@@ -206,12 +204,14 @@ const Dashboard = (props) => {
           </div>
           <div className="w-[50%] xsm:w-full h-full xsm:flex-wrap sm:flex-nowrap flex justify-between gap-4">
             <SearchSales
+              className="xsm:text-lg md:text-xl"
               plceh="Start Date"
               brand="Start Date"
               filterValue={date}
               setFilterValue={setDate}
             />
             <SearchSales
+              className="xsm:text-lg md:text-xl"
               plceh="End Date"
               brand="End Date"
               filterValue={endDate}
@@ -221,11 +221,11 @@ const Dashboard = (props) => {
         </div>
       </div>
 
-      <div className="w-full md:mt-[-3rem] xsm:h-[36rem]">
+      <div className="w-full md:mt-[2rem] xsm:h-[36rem]">
         <div className="w-full  flex justify-end !items-center">
-        <DownloadBtn data={data}/>
+          <DownloadBtn data={data} />
         </div>
-        <div className="w-full dark:bg-gray-700 h-full bg-white overflow-auto">
+        <div className="w-full border border-gray-300 overflow-x-scroll h-[83%] dark:bg-gray-700 bg-white">
           <TableComponent sdata={data} filteredData={filterData} />
         </div>
       </div>

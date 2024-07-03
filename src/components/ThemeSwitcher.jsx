@@ -22,54 +22,58 @@
 //                 checked={themeMode === "dark"}
 //             />
 
-     
 //     </div>
 //   );
 // }
 
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect } from "react";
 
 import { FaSun } from "react-icons/fa6";
 import { FaMoon } from "react-icons/fa";
 
-
-
 const DarkModeSwitcher = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  console.log("theme", isDarkMode);
 
   useEffect(() => {
     // Load dark mode preference from local storage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-      setIsDarkMode(true);
+    setIsDarkMode(localStorage.getItem("theme"));
+    if (isDarkMode === "dark") {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+
+      // setIsDarkMode(true);
     } else {
-      document.documentElement.classList.remove('dark');
-      setIsDarkMode(false);
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      // setIsDarkMode(false);
     }
-  }, []);
+  }, [isDarkMode]);
 
   const toggleDarkMode = () => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      setIsDarkMode(false);
+    if (isDarkMode === "dark") {
+      // document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      // setIsDarkMode(false);
     } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      setIsDarkMode(true);
+      // document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      // setIsDarkMode(true);
     }
   };
 
   return (
     <button
       onClick={toggleDarkMode}
-      className={`p-3 shadow rounded-full transition ${
-        isDarkMode ? 'bg-gray-700' : 'bg-white'
+      className={`p-2 flex justify-center items-center shadow xsm:w-[2.5rem] xsm:h-[2.5rem] md:w-[3.5rem] md:h-[3.5rem] rounded-full transition ${
+        isDarkMode === "dark" ? "bg-gray-700" : "bg-white"
       } text-white`}
     >
-      {isDarkMode ? <FaMoon className='size-8 rounde-full'/> : <FaSun className='size-8 rounde-full text-yellow-300'/>}
+      {isDarkMode === "dark" ? (
+        <FaMoon className="xsm:size-8 md:size-9 rounde-full" />
+      ) : (
+        <FaSun className="xsm:size-8 md:size-9 rounde-full text-yellow-300" />
+      )}
     </button>
   );
 };
