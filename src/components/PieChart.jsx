@@ -36,7 +36,7 @@ const PieChart = () => {
 
   return (
     <div className="w-full h-full p-6 bg-white rounded-lg shadow-lg">
-      <Chart options={options} series={series} type="pie" height={350} />
+      <Chart options={options} series={series} type="pie" height={250} />
     </div>
   );
 };
