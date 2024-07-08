@@ -33,32 +33,34 @@ import { FaMoon } from "react-icons/fa";
 
 const DarkModeSwitcher = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  console.log("theme", isDarkMode);
+  // console.log("theme 1", isDarkMode);
 
   useEffect(() => {
-    // Load dark mode preference from local storage
-    setIsDarkMode(localStorage.getItem("theme"));
-    if (isDarkMode === "dark") {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+    let theme = localStorage.getItem("theme");
+    if (theme == "light") {
+      setIsDarkMode(false);
+    } else {
+      setIsDarkMode(true);
+    }
+  }, []);
 
-      // setIsDarkMode(true);
+  useEffect(() => {
+    if (isDarkMode === true) {
+      document.documentElement.classList.add("dark");
+      // const jsonData = JSON.stringify("dark");
     } else {
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      // setIsDarkMode(false);
+      // const jsonData = JSON.stringify("light");
     }
   }, [isDarkMode]);
 
   const toggleDarkMode = () => {
-    if (isDarkMode === "dark") {
-      // document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      // setIsDarkMode(false);
-    } else {
-      // document.documentElement.classList.add("dark");
+    if (isDarkMode === false) {
       localStorage.setItem("theme", "dark");
-      // setIsDarkMode(true);
+      setIsDarkMode(true);
+    } else {
+      localStorage.setItem("theme", "light");
+      setIsDarkMode(false);
     }
   };
 
@@ -66,10 +68,10 @@ const DarkModeSwitcher = () => {
     <button
       onClick={toggleDarkMode}
       className={`p-2 flex justify-center items-center shadow xsm:w-[2.5rem] xsm:h-[2.5rem] md:w-[3.5rem] md:h-[3.5rem] rounded-full transition ${
-        isDarkMode === "dark" ? "bg-gray-700" : "bg-white"
+        isDarkMode === true ? "bg-gray-700" : "bg-white"
       } text-white`}
     >
-      {isDarkMode === "dark" ? (
+      {isDarkMode === true ? (
         <FaMoon className="xsm:size-8 md:size-9 rounde-full" />
       ) : (
         <FaSun className="xsm:size-8 md:size-9 rounde-full text-yellow-300" />

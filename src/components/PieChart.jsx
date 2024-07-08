@@ -1,39 +1,42 @@
 // src/components/PieChart.js
-import React from 'react';
-import Chart from 'react-apexcharts';
+import React from "react";
+import Chart from "react-apexcharts";
 
 const PieChart = () => {
   const options = {
     chart: {
-      type: 'pie',
+      type: "pie",
     },
-    labels: ['Product A', 'Product B', 'Product C', 'Product D'],
+    labels: ["Product A", "Product B", "Product C", "Product D"],
     title: {
-      text: 'Product Sales Distribution',
-      align: 'left',
+      text: "Product Sales Distribution",
+      align: "left",
       style: {
-        fontSize: '16px',
-        color: '#666',
-      }
+        fontSize: "16px",
+        color: "#666",
+        marginTop: "10px",
+      },
     },
-    responsive: [{
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 200
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200,
+          },
+          legend: {
+            position: "bottom",
+          },
         },
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }]
+      },
+    ],
   };
 
   const series = [44, 55, 13, 33]; // Values for each slice of the pie
 
   return (
-    <div className="w-full p-6 bg-white rounded-lg shadow-lg">
-      <Chart options={options} series={series} type="pie" height={361} />
+    <div className="w-full h-full p-6 bg-white rounded-lg shadow-lg">
+      <Chart options={options} series={series} type="pie" height={350} />
     </div>
   );
 };
